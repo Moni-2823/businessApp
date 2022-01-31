@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+let dbUri = "mongodb+srv://cluster0.hcpdu.mongodb.net/business"
+// let dbUri = "mongodb://127.0.0.1/business"
 
-mongoose.connect('mongodb://127.0.0.1/business',{ useNewUrlParser: true, useUnifiedTopology: true },(err,data) => {
+mongoose.connect(dbUri,{ useNewUrlParser: true, useUnifiedTopology: true },(err,data) => {
     if(err) {
         return console.log('something wrong here',err);
     }
