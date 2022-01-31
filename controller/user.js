@@ -9,9 +9,11 @@ let create = async (data) => {
             console.log('email already created ');
             return ({code:404,msg: 'email already exist,try for new'})
         }
+        var token = jwt.sign({email: data.email},'abc123',{ expiresIn: '1h' });
         let salt = await bcrypt.genSalt(4);
             var passwordHash = await bcrypt.hash(data.password,salt);
             data.password = passwordHash
+            data.token = token
         let saveUserDetails = new userModel(data);
         await saveUserDetails.save();
         if(saveUserDetails) {
